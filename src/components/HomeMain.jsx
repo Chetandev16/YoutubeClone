@@ -67,18 +67,36 @@ const HomeMain = () => {
         loader={<h4>Loading...</h4>}
         scrollableTarget="scrollableDiv"
       >
-        <div className='flex flex-col pb-10 justify-center items-center lg:grid grid-cols-4'>
+        <div className='flex flex-col pb-10 justify-center items-center lg:grid md:grid md:grid-cols-3 xl:grid-cols-4 lg:grid-cols-3  gap-6'>
           {videos.map((video, idx) => {
-            if (video.thumbnail === undefined) return null
-            return (
-              <div className='flex flex-col items-start justify-start h-[280px] w-[300px] lg:w-[360px]' key={idx}>
-                <img onClick={() => {
-                  // Navigate(`/watch/${video.videoId}`)
-                  navigate(`/watch/${video.videoId}`)
-                }} className='cursor-pointer rounded-lg  h-[230px] w-[400px]' src={video?.thumbnail?.[0]?.url} alt="" />
-                <h1>{video.title}</h1>
-              </div>
-            )
+            if (video.title === 'Shorts') {
+              return null
+            } else {
+              return (
+                <div className='flex flex-col gap-3 h-[280px] w-[300px] lg:w-[360px]' key={idx}>
+                  <div className='relative'>
+                    <img onClick={() => {
+                      // Navigate(`/watch/${video.videoId}`)
+                      navigate(`/watch/${video.videoId}`)
+                    }} className='cursor-pointer rounded-xl h-[230px] w-[400px] lg:w-[300px] lg:h-[200px] xl:h-[230px] xl:w-[370px]' src={video?.thumbnail?.[0]?.url} alt="" />
+
+                    <p className='absolute bottom-0 right-[10%] px-2 rounded-lg text-xs bg-black'>{video?.lengthText}</p>
+
+                  </div>
+                  <div className='flex gap-2'>
+                    <img className='rounded-full h-10' src={video?.channelThumbnail?.[0]?.url} alt="" />
+                    <div className='flex flex-col '>
+                      <h1 className='flex text-gray-300 justify-start text-ellipsis truncate items-center w-[300px] h-6'>{video.title}</h1>
+                      <div className='flex text-gray-300 '>
+                        <h1>{video?.viewCount} views</h1>
+                        <p className='flex h-6 w-6 text-center justify-center items-center'>.</p>
+                        <h1>{video?.publishedTimeText}</h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )
+            }
           })}
         </div>
       </InfiniteScroll>

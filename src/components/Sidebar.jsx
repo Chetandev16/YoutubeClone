@@ -2,7 +2,7 @@ import React from 'react'
 
 const Sidebar = () => {
   return (
-    <div className='hidden px-4 mt-[50px] pb-10 lg:flex flex-col gap-2 w-[250px] h-screen overflow-hidden hover:overflow-y-scroll scrollbar fixed'>
+    <div className='hidden px-4 mt-[50px] pb-14 lg:flex flex-col gap-2 w-[250px] h-screen overflow-hidden hover:overflow-y-scroll scrollbar fixed'>
       <div className='fill-white flex items-center hover:cursor-pointer hover:bg-[#272727] p-2 rounded-lg'>
         <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" class="style-scope yt-icon" style={{ pointerEvents: 'none', height: "20px", width: "25px", display: "block" }}><g class="style-scope yt-icon"><path d="M4,10V21h6V15h4v6h6V10L12,3Z" class="style-scope yt-icon"></path></g></svg>
         <p>Home</p>
