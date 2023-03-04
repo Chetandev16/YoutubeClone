@@ -52,6 +52,9 @@ const HomeMain = () => {
 
   useEffect(() => {
     fetchData()
+    console.log('====================================');
+    console.log(import.meta.env.VITE_SEARCH_KEY);
+    console.log('====================================');
   }, [])
 
   if (loading) {
