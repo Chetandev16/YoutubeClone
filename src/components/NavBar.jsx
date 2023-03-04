@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
-import { toggleNavbar } from '../features/toggle'
+import { search } from '../features/search';
 
 const NavBar = () => {
     const toggle = useSelector(state => state.toggle.value)
+    const [searchvalue, setSearchvalue] = useState('')
     const dispatch = useDispatch()
     const navigate = useNavigate();
 
@@ -22,8 +23,11 @@ const NavBar = () => {
             </div>
 
             <div className='relative hidden lg:flex '>
-                <input placeholder='Search' className='hidden lg:block w-[550px] bg-[#0f0f0f] outline outline-[gray] rounded-3xl outline-offset-2 outline-1 px-3 py-1' type="text" name="" id="" />
-                <div onClick={()=>{
+                <input onChange={(e) => {
+                    setSearchvalue(e.target.value)
+                }} value={searchvalue} placeholder='Search' className='hidden lg:block w-[550px] bg-[#0f0f0f] outline outline-[gray] rounded-3xl outline-offset-2 outline-1 px-3 py-1' type="text" name="" id="" />
+                <div onClick={() => {
+                    dispatch(search(searchvalue))
                     navigate('/search')
                 }} className='cursor-pointer absolute hidden lg:block bg-[#272727] right-[-1px] rounded-r-3xl top-[-2.3px] px-4 py-[0.37rem]'>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -57,8 +61,13 @@ const NavBar = () => {
             </div>
 
             <div className='relative lg:hidden flex'>
-                <input placeholder='Search' className='w-[200px] bg-[#0f0f0f] outline outline-[gray] rounded-3xl outline-offset-2 outline-1 px-3 py-1' type="text" name="" id="" />
-                <div className='cursor-pointer absolute bg-[#272727] right-[-1px] rounded-r-3xl top-[-2.3px] px-4 py-[0.37rem]'>
+                <input onChange={(e) => {
+                    setSearchvalue(e.target.value)
+                }} value={searchvalue} placeholder='Search' className='w-[200px] bg-[#0f0f0f] outline outline-[gray] rounded-3xl outline-offset-2 outline-1 px-3 py-1' type="text" name="" id="" />
+                <div onClick={() => {
+                    dispatch(search(searchvalue))
+                    navigate('/search')
+                }} className='cursor-pointer absolute bg-[#272727] right-[-1px] rounded-r-3xl top-[-2.3px] px-4 py-[0.37rem]'>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                     </svg>

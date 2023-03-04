@@ -6,11 +6,13 @@ import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
 import videosReducer from './features/videos'
 import toggleReducer from './features/toggle'
+import searchReducer from './features/search'
 
 const store = configureStore({
   reducer: {
     videos: videosReducer,
     toggle: toggleReducer,
+    search: searchReducer,
   }
 })
 
