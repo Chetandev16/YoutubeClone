@@ -15,7 +15,7 @@ const Watch = () => {
         const res = await fetch(`https://yt-api.p.rapidapi.com/dl?id=${id}`, {
             "method": "GET",
             "headers": {
-                'X-RapidAPI-Key': import.meta.env.VITE_SEARCH_KEY3,
+                'X-RapidAPI-Key': import.meta.env.VITE_SEARCH_KEY5,
                 'X-RapidAPI-Host': import.meta.env.VITE_HOST
             }
         })
@@ -36,7 +36,7 @@ const Watch = () => {
         const res = await fetch(`https://yt-api.p.rapidapi.com/related?id=${id}`, {
             "method": "GET",
             "headers": {
-                'X-RapidAPI-Key': import.meta.env.VITE_SEARCH_KEY4,
+                'X-RapidAPI-Key': import.meta.env.VITE_SEARCH_KEY5,
                 'X-RapidAPI-Host': import.meta.env.VITE_HOST
             }
         })
@@ -48,7 +48,7 @@ const Watch = () => {
         const res = await fetch(`https://yt-api.p.rapidapi.com/channel/about?id=${video?.channelId}`, {
             "method": "GET",
             "headers": {
-                'X-RapidAPI-Key': import.meta.env.VITE_SEARCH_KEY4,
+                'X-RapidAPI-Key': import.meta.env.VITE_SEARCH_KEY5,
                 'X-RapidAPI-Host': import.meta.env.VITE_HOST
             }
         })
@@ -165,16 +165,16 @@ const Watch = () => {
 
                         return (
                             <div key={idx} className='flex gap-4'>
-                                <div className='relative'>
+                                <div className='relative h-fit w-fit'>
                                     <img onClick={() => {
                                         navigate(`/watch/${suggestion?.videoId}`)
                                         window.location.reload(true)
-                                    }} className='cursor-pointer rounded-xl h-30 lg:h-32 lg:w-56 object-contain' src={suggestion?.thumbnail?.[0]?.url} alt="" />
-                                    <p className='absolute text-xs bg-black px-2 rounded-md bottom-[46%] lg:bottom-[5%] xl:bottom-[5%] right-0'>{suggestion.lengthText}</p>
+                                    }} className='cursor-pointer w-fit rounded-xl lg:h-32 lg:w-56 object-contain' src={suggestion?.thumbnail?.[0]?.url} alt="" />
+                                    <p className='absolute text-xs bg-black px-2 rounded-md bottom-[6%] lg:bottom-[5%] xl:bottom-[5%] right-0'>{suggestion.lengthText}</p>
                                 </div>
 
-                                <div className='flex justify-center items-start flex-col gap-2 h-30 w-fit lg:w-44'>
-                                    <h1 className='text-sm'>{suggestion?.title}</h1>
+                                <div className='flex w-[60%] justify-center items-start flex-col gap-2 h-30 lg:w-44'>
+                                    <h1 className='text-sm'>{suggestion?.title?.slice(0,100)}...</h1>
                                     <h2 className='text-xs'>{suggestion.channelTitle}</h2>
                                     <div className='flex gap-2 text-gray-400'>
                                         <h2 className='text-xs'>{views} views</h2>

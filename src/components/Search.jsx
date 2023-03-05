@@ -130,7 +130,7 @@ const Search = () => {
             )
             else return (
               <div key={idx} className='flex flex-col lg:flex-row px-4 gap-2 lg:gap-4'>
-                <div className='relative'>
+                <div className='relative w-fit'>
                   <img onClick={() => {
                     navigate(`/watch/${item?.videoId}`)
                   }} className='rounded-xl h-[14rem] cursor-pointer' src={item?.thumbnail?.[0]?.url} alt="" />
