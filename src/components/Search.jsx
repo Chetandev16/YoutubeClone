@@ -12,10 +12,10 @@ const Search = () => {
 
 
   const getSearchResults = async () => {
-    const req = await fetch(`https://yt-api.p.rapidapi.com/search?query=${search}'&geo=IN`, {
+    const req = await fetch(`https://youtube-v3-alternative.p.rapidapi.com/search?query=${search}'&geo=IN`, {
       method: 'GET',
       headers: {
-        'x-rapidapi-key': import.meta.env.VITE_SEARCH_KEY5,
+        'x-rapidapi-key': import.meta.env.VITE_SEARCH_KEY,
         'x-rapidapi-host': import.meta.env.VITE_HOST
       }
     })

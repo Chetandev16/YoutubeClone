@@ -20,7 +20,7 @@ const HomeMain = () => {
     const word = randomWords();
     // console.log(word);
     setRandomWord(word);
-    const url = `https://yt-api.p.rapidapi.com/search?query=${randomWord}&geo=IN&lang=en`
+    const url = `https://youtube-v3-alternative.p.rapidapi.com/search?query=${randomWord}&geo=IN&lang=en`
 
     const res = await fetch(url, {
       "method": "GET",
@@ -31,9 +31,13 @@ const HomeMain = () => {
     })
 
 
+    const data = await res.json()
+
+    console.log(data);
+
+
     if (res.status === 200) {
       console.log('success');
-      const data = await res.json()
       if (items.length === 0) {
         dispatch(setVideos(data.data))
         setItems(data.data)
@@ -68,8 +72,8 @@ const HomeMain = () => {
         scrollableTarget="scrollableDiv"
       >
         <div className='flex flex-col pb-10 justify-center items-center lg:grid md:grid md:grid-cols-3 xl:grid-cols-4 lg:grid-cols-3 gap-6'>
-          {videos.map((video, idx) => {
-            if (video.title === 'Shorts') {
+          {videos?.map((video, idx) => {
+            if (video?.type === 'Shorts' || video?.type === "channel") {
               return null
             } else {
               var views;
@@ -85,20 +89,20 @@ const HomeMain = () => {
                   <div className='relative'>
                     <img onClick={() => {
                       // Navigate(`/watch/${video.videoId}`)
-                      navigate(`/watch/${video.videoId}`)
+                      navigate(`/watch/${video?.videoId}`)
                     }} className='cursor-pointer rounded-xl h-[230px] object-cover md:w-[200px]  lg:w-[240px] lg:h-[180px] xl:h-[200px] xl:w-[400px] ' src={video?.thumbnail?.[0]?.url} alt="" />
 
                     <p className='absolute bottom-[1%] lg:right-[10%] xl:right-[1%] px-2 rounded-lg text-xs bg-black'>{video?.lengthText}</p>
 
                   </div>
                   <div className='flex gap-2'>
-                    <img className='rounded-full h-10' src={video?.channelThumbnail?.[0]?.url} alt="" />
+                    <img className='rounded-full h-10' src={video?.channelThumbnail?.url} alt="" />
                     <div className='flex flex-col '>
                       <h1 className='flex text-gray-300 justify-start text-ellipsis truncate items-center w-[300px] h-6'>{video.title}</h1>
                       <div className='flex text-gray-300 '>
                         <h1>{views} views</h1>
                         <p className='flex h-6 w-6 text-center justify-center items-center'>.</p>
-                        <h1>{video?.publishedTimeText}</h1>
+                        <h1>{video?.publishedText}</h1>
                       </div>
                     </div>
                   </div>
